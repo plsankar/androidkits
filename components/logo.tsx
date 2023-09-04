@@ -1,10 +1,10 @@
-import { cn } from '@/lib/utils';
-import React, { FC } from 'react';
+import { cn } from "@/lib/utils";
+import React, { FC } from "react";
 
 const Logo: FC<{ className?: string }> = ({ className }) => {
   return (
     <svg
-      className={cn('w-full', className)}
+      className={cn("w-full", className)}
       xmlns="http://www.w3.org/2000/svg"
       data-name="Layer 2"
       viewBox="0 0 623.78 107.4"

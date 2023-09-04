@@ -1,6 +1,6 @@
-import React from 'react';
-import Logo from './logo';
-import { ModeToggle } from './ui/mode-toggle';
+import React from "react";
+import Logo from "./logo";
+import { ModeToggle } from "./ui/mode-toggle";
 
 const Navbar = () => {
   return (
