@@ -57,3 +57,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.font-display {
+  font-family: var(--font-titillium-web);
+}

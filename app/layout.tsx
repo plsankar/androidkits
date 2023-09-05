@@ -1,9 +1,18 @@
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Titillium_Web } from "next/font/google";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  weight: ["100", "200", "300", "400", "500", "600"],
+  subsets: ["latin"],
+});
+
+const titillium_web = Titillium_Web({
+  weight: ["200", "300", "400", "600"],
+  subsets: ["latin"],
+  variable: "--font-titillium-web",
+});
 
 export const metadata: Metadata = {
   title: "AndroidKits",
@@ -17,9 +26,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} ${titillium_web.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {children}
+          <div className="min-h-screen flex flex-col">{children}</div>
         </ThemeProvider>
       </body>
     </html>
