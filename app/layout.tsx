@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Titillium_Web } from "next/font/google";
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 const inter = Inter({
   weight: ["100", "200", "300", "400", "500", "600"],
@@ -32,6 +33,7 @@ export default function RootLayout({
           <div className="min-h-screen flex flex-col">
             <Navbar />
             {children}
+            <Footer />
           </div>
         </ThemeProvider>
       </body>
