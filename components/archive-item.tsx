@@ -47,7 +47,7 @@ const ArchiveItem: FC<{ project: ProjectWithUser }> = ({ project }) => {
             <HoverCardContent>
               <div className="flex items-center gap-5">
                 <Avatar>
-                  <AvatarImage src={""} />
+                  <AvatarImage src={project.user.avatar} />
                   <AvatarFallback className="text-xs">
                     {project.user.username.substring(0, 1)}
                   </AvatarFallback>
