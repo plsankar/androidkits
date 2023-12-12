@@ -6,20 +6,42 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "format": "prettier --write .",
+    "lint-staged": "npx lint-staged --verbose",
+    "prepare": "husky install",
+    "test": "npm run lint && npm run format"
   },
   "dependencies": {
+    "-": "^0.0.1",
+    "@radix-ui/react-dropdown-menu": "^2.0.5",
+    "@radix-ui/react-slot": "^1.0.2",
     "@types/node": "20.5.9",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.15",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "D": "^1.0.0",
     "eslint": "8.48.0",
     "eslint-config-next": "13.4.19",
+    "lucide": "^0.274.0",
+    "lucide-react": "^0.274.0",
     "next": "13.4.19",
+    "next-themes": "^0.2.1",
     "postcss": "8.4.29",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "tailwind-merge": "^1.14.0",
     "tailwindcss": "3.3.3",
+    "tailwindcss-animate": "^1.0.7",
     "typescript": "5.2.2"
+  },
+  "devDependencies": {
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3"
   }
 }
