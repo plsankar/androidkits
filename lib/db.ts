@@ -1,12 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 
 const prismaClientSingleton = () => {
-  return new PrismaClient();
+    return new PrismaClient();
 };
 
 declare global {
-  // eslint-disable-next-line no-unused-vars
-  var prisma: undefined | ReturnType<typeof prismaClientSingleton>;
+    // eslint-disable-next-line no-unused-vars
+    var prisma: undefined | ReturnType<typeof prismaClientSingleton>;
 }
 
 const prisma = globalThis.prisma ?? prismaClientSingleton();

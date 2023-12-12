@@ -3,16 +3,16 @@ import ArchiveGrid from "@/components/archive-grid";
 import prisma from "@/lib/db";
 
 export default async function Home() {
-  const projects = await prisma.project.findMany({
-    take: 6,
-    include: {
-      user: true,
-    },
-  });
-  return (
-    <div className="container">
-      <Hero />
-      <ArchiveGrid projects={projects} />
-    </div>
-  );
+    const projects = await prisma.project.findMany({
+        take: 6,
+        include: {
+            user: true,
+        },
+    });
+    return (
+        <div className="container">
+            <Hero />
+            <ArchiveGrid projects={projects} />
+        </div>
+    );
 }
