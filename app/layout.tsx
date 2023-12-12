@@ -16,7 +16,7 @@ const titillium_web = Titillium_Web({
 
 export const metadata: Metadata = {
   title: "AndroidKits",
-  description: "Elevate Your Android Game with Our Arsenal",
+  description: "Elevate Your Android Development with Our Arsenal",
 };
 
 export default function RootLayout({
