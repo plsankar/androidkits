@@ -15,6 +15,8 @@ const Hero = () => {
         </Link>
         <Link
           href="https://github.com/plsankar/androidkits"
+          target="_blank"
+          rel="nofollow"
           className={buttonVariants({ variant: "outline" })}
         >
           Github
