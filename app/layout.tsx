@@ -2,6 +2,7 @@ import { ThemeProvider } from "@/components/ui/theme-provider";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter, Titillium_Web } from "next/font/google";
+import Navbar from "@/components/navbar";
 
 const inter = Inter({
   weight: ["100", "200", "300", "400", "500", "600"],
@@ -28,7 +29,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} ${titillium_web.variable}`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="min-h-screen flex flex-col">{children}</div>
+          <div className="min-h-screen flex flex-col">
+            <Navbar />
+            {children}
+          </div>
         </ThemeProvider>
       </body>
     </html>

@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Hero = () => {
   return (
-    <div className="container py-20 space-y-10">
+    <div className="py-10 space-y-10">
       <h1 className="text-6xl leading-[1.2] font-light tracking-tight font-display">
         <span className="text-primary">Android development</span> <br />
         libraries and tools
