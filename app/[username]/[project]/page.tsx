@@ -2,7 +2,7 @@ import { Card, CardHeader } from "@/components/ui/card";
 import prisma from "@/lib/db";
 import { notFound } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Markdown from "react-markdown";
+import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 
 export default async function Page({ params }: { params: { username: string; project: string } }) {
@@ -15,13 +15,6 @@ export default async function Page({ params }: { params: { username: string; pro
     if (!project) {
         notFound();
     }
-
-    // const readmeMd = await serialize(project.readme, {
-    //     mdxOptions: {
-    //         remarkPlugins: [remarkGfm],
-    //         format: "mdx",
-    //     },
-    // });
 
     return (
         <div className="py-10">
@@ -57,7 +50,14 @@ export default async function Page({ params }: { params: { username: string; pro
                             </TabsList>
                             <TabsContent value="readme">
                                 {/* <MDXRemote {...readmeMd} /> */}
-                                <Markdown remarkPlugins={[]}>{project.readme}</Markdown>
+                                <article className="prose dark:prose-invert prose-neutral">
+                                    <MDXRemote
+                                        source={project.readme}
+                                        options={{
+                                            mdxOptions: { format: "md", remarkPlugins: [remarkGfm], rehypePlugins: [] },
+                                        }}
+                                    />
+                                </article>
                             </TabsContent>
                             <TabsContent value="discussion">Coming Soon.</TabsContent>
                         </Tabs>
