@@ -47,6 +47,20 @@
         --input: 240 3.7% 15.9%;
         --ring: 142.4 71.8% 29.2%;
     }
+
+    .highlight {
+        display: flex;
+        flex-direction: column;
+        color: white;
+        font-size: 14px;
+    }
+
+    .prose img[align="left"] {
+        padding-right: 20px;
+    }
+    .prose img[align="right"] {
+        padding-left: 20px;
+    }
 }
 
 @layer base {

@@ -2,9 +2,8 @@ import { Card, CardHeader } from "@/components/ui/card";
 import prisma from "@/lib/db";
 import { notFound } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import remarkGfm from "remark-gfm";
 import { Metadata } from "next";
+import Readme from "@/components/readme";
 
 export default async function Page({ params }: { params: { username: string; project: string } }) {
     const project = await prisma.project.findFirst({
@@ -51,19 +50,10 @@ export default async function Page({ params }: { params: { username: string; pro
                             </TabsList>
                             <div className="mt-10">
                                 <TabsContent value="readme">
-                                    {/* <MDXRemote {...readmeMd} /> */}
-                                    <article className="prose dark:prose-invert prose-neutral">
-                                        <MDXRemote
-                                            source={project.readme}
-                                            options={{
-                                                mdxOptions: {
-                                                    format: "md",
-                                                    remarkPlugins: [remarkGfm],
-                                                    rehypePlugins: [],
-                                                },
-                                            }}
-                                        />
-                                    </article>
+                                    <Readme
+                                        content={project.readme}
+                                        assetsUrl={`https://raw.githubusercontent.com/${project.slug}/master/`}
+                                    />
                                 </TabsContent>
                                 <TabsContent value="discussion">Coming Soon.</TabsContent>
                             </div>

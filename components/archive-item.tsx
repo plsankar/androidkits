@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ProjectWithUser } from "@/lib/types";
+import { ProjectWithUser } from "@/additional";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 import Link from "next/link";
 

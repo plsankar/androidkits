@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import ArchiveItem from "./archive-item";
-import { ProjectWithUser } from "@/lib/types";
+import { ProjectWithUser } from "@/additional";
 
 const ArchiveGrid: FC<{ projects: ProjectWithUser[] }> = ({ projects }) => {
     return (
