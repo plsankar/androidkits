@@ -34,7 +34,7 @@ export default async function Page({ params }: { params: { username: string; pro
                 </div>
                 <div className="flex flex-row-reverse gap-4 lg:gap-10 mt-10">
                     <div className="w-1/3">
-                        <Card className="rounded-sm">
+                        <Card className="rounded-sm sticky top-0">
                             <CardHeader className="p-3">
                                 <div className="flex flex-col divide-y space-y-3">
                                     <div>
