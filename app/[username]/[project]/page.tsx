@@ -5,6 +5,14 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Metadata } from "next";
 import Readme from "@/components/readme";
 
+export async function generateStaticParams() {
+    const projects = await prisma.project.findMany();
+    return projects.map((project) => ({
+        username: project.slug.split("/")[0],
+        project: project.slug.split("/")[1],
+    }));
+}
+
 export default async function Page({ params }: { params: { username: string; project: string } }) {
     const project = await prisma.project.findFirst({
         where: {
