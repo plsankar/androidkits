@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: "Search",
 };
 
-export const PROJECTS_PER_PAGE = 6;
+const PROJECTS_PER_PAGE = 6;
 
 export default async function Search({
     searchParams,
