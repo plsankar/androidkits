@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Metadata } from "next";
 import Readme from "@/components/readme";
+import Link from "next/link";
 
 export async function generateStaticParams() {
     const projects = await prisma.project.findMany();
@@ -38,12 +39,22 @@ export default async function Page({ params }: { params: { username: string; pro
                                 <div className="flex flex-col divide-y space-y-3">
                                     <div>
                                         <h2 className="mb-1">Repository</h2>
-                                        <p className="text-muted-foreground text-sm">{project.repo}</p>
+                                        <p className="text-muted-foreground text-sm">
+                                            <Link href={project.repo} target="_blank" rel="nofollow">
+                                                {project.repo}
+                                            </Link>
+                                        </p>
                                     </div>
                                     <div>
                                         <h2 className="mb-1 pt-3">Homepage</h2>
                                         <p className="text-muted-foreground text-sm">
-                                            {project.homepage !== "" ? project.homepage : project.repo}
+                                            <Link
+                                                href={project.homepage !== "" ? project.homepage : project.repo}
+                                                target="_blank"
+                                                rel="nofollow"
+                                            >
+                                                {project.homepage !== "" ? project.homepage : project.repo}
+                                            </Link>
                                         </p>
                                     </div>
                                 </div>
