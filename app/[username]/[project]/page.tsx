@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
+import { Metadata } from "next";
 
 export default async function Page({ params }: { params: { username: string; project: string } }) {
     const project = await prisma.project.findFirst({
@@ -48,22 +49,49 @@ export default async function Page({ params }: { params: { username: string; pro
                                 <TabsTrigger value="readme">Readme</TabsTrigger>
                                 <TabsTrigger value="discussion">Discussion</TabsTrigger>
                             </TabsList>
-                            <TabsContent value="readme">
-                                {/* <MDXRemote {...readmeMd} /> */}
-                                <article className="prose dark:prose-invert prose-neutral">
-                                    <MDXRemote
-                                        source={project.readme}
-                                        options={{
-                                            mdxOptions: { format: "md", remarkPlugins: [remarkGfm], rehypePlugins: [] },
-                                        }}
-                                    />
-                                </article>
-                            </TabsContent>
-                            <TabsContent value="discussion">Coming Soon.</TabsContent>
+                            <div className="mt-10">
+                                <TabsContent value="readme">
+                                    {/* <MDXRemote {...readmeMd} /> */}
+                                    <article className="prose dark:prose-invert prose-neutral">
+                                        <MDXRemote
+                                            source={project.readme}
+                                            options={{
+                                                mdxOptions: {
+                                                    format: "md",
+                                                    remarkPlugins: [remarkGfm],
+                                                    rehypePlugins: [],
+                                                },
+                                            }}
+                                        />
+                                    </article>
+                                </TabsContent>
+                                <TabsContent value="discussion">Coming Soon.</TabsContent>
+                            </div>
                         </Tabs>
                     </div>
                 </div>
             </div>
         </div>
     );
+}
+
+export async function generateMetadata({
+    params,
+}: {
+    params: { username: string; project: string };
+}): Promise<Metadata | null> {
+    const project = await prisma.project.findFirst({
+        where: {
+            slug: `${params.username}/${params.project}`,
+        },
+    });
+
+    if (!project) {
+        return null;
+    }
+
+    return {
+        title: `${project.name} - ${project.slug}`,
+        description: project.description,
+    };
 }
