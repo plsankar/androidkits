@@ -22,16 +22,16 @@ const ArchiveItem: FC<{ project: ProjectWithUser }> = ({ project }) => {
             <CardFooter className="p-4 border-t mt-auto inline-block">
                 {project.user ? (
                     <HoverCard>
-                        <HoverCardTrigger>
-                            <div className="flex gap-3 items-center cursor-pointer">
+                        <HoverCardTrigger asChild>
+                            <Link className="flex gap-3 items-center cursor-pointer" href={`/${project.user.slug}`}>
                                 <Avatar className="h-5 w-5">
-                                    <AvatarImage src={""} />
+                                    <AvatarImage src={project.user.avatar} />
                                     <AvatarFallback className="text-xs">
                                         {project.user.username.substring(0, 1)}
                                     </AvatarFallback>
                                 </Avatar>
                                 <p className="leading-none text-sm">@{project.user.username}</p>
-                            </div>
+                            </Link>
                         </HoverCardTrigger>
                         <HoverCardContent>
                             <div className="flex items-center gap-5">
