@@ -42,8 +42,14 @@ const ArchiveItem: FC<{ project: ProjectWithUser }> = ({ project }) => {
                                     </AvatarFallback>
                                 </Avatar>
                                 <div className="">
-                                    <p className="leading-none text-lg mb-2">{project.user.name}</p>
-                                    <p className="leading-none text-sm text-muted">@{project.user.username}</p>
+                                    <Link href={`/${project.user.slug}`}>
+                                        <p className="leading-none text-lg mb-2">{project.user.name}</p>
+                                    </Link>
+                                    <Link href={`/${project.user.slug}`}>
+                                        <p className="leading-none text-sm text-muted-foreground">
+                                            @{project.user.username}
+                                        </p>
+                                    </Link>
                                 </div>
                             </div>
                         </HoverCardContent>
