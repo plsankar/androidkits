@@ -1,6 +1,5 @@
 import { Card, CardHeader } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import Readme from "@/components/readme";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export default async function Loading() {
