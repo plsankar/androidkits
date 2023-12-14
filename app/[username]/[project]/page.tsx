@@ -54,11 +54,11 @@ export default async function Page({ params }: { params: { username: string; pro
                         <GithubRepoStatsIcons project={project} />
                     </div>
                 </div>
-                <div className="flex flex-row-reverse gap-4 lg:gap-10 mt-10">
-                    <div className="w-1/3">
+                <div className="flex flex-col-reverse xl:flex-row-reverse gap-4 xl:gap-10 mt-10">
+                    <div className="xl:w-1/3">
                         <InfoCard project={project} />
                     </div>
-                    <div className="w-2/3">
+                    <div className="xl:w-2/3">
                         <Tabs defaultValue="readme" className="w-full">
                             <TabsList className="bg-none">
                                 <TabsTrigger value="readme">Readme</TabsTrigger>
