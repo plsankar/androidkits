@@ -50,6 +50,7 @@ const Readme: FC<{ content: string; assetsUrl: string }> = ({ content, assetsUrl
                                     img: "not-prose",
                                     "h1,h2,h3,h4,h5,h6": "border-b pb-2",
                                     p: "pt-0",
+                                    "p img": "inline",
                                 },
                             ],
                         ],

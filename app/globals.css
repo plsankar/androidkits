@@ -55,6 +55,11 @@
         font-size: 14px;
     }
 
+    .prose img {
+        max-width: 100%;
+        height: auto;
+    }
+
     .prose img[align="left"] {
         padding-right: 20px;
     }
