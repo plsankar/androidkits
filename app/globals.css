@@ -47,25 +47,6 @@
         --input: 240 3.7% 15.9%;
         --ring: 142.4 71.8% 29.2%;
     }
-
-    .highlight {
-        display: flex;
-        flex-direction: column;
-        color: white;
-        font-size: 14px;
-    }
-
-    .prose img {
-        max-width: 100%;
-        height: auto;
-    }
-
-    .prose img[align="left"] {
-        padding-right: 20px;
-    }
-    .prose img[align="right"] {
-        padding-left: 20px;
-    }
 }
 
 @layer base {
@@ -75,13 +56,30 @@
     body {
         @apply bg-background text-foreground;
     }
-}
-
-html {
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-}
-
-.font-display {
-    font-family: var(--font-titillium-web);
+    html {
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+    }
+    a {
+        @apply hover:text-primary transition duration-100;
+    }
+    .font-display {
+        font-family: var(--font-titillium-web);
+    }
+    .highlight {
+        display: flex;
+        flex-direction: column;
+        color: white;
+        font-size: 14px;
+    }
+    .prose img {
+        max-width: 100%;
+        height: auto;
+    }
+    .prose img[align="left"] {
+        padding-right: 20px;
+    }
+    .prose img[align="right"] {
+        padding-left: 20px;
+    }
 }
