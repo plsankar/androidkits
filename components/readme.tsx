@@ -16,6 +16,10 @@ import rehypeExternalLinks from "rehype-external-links";
 
 const Readme: FC<{ content: string; assetsUrl: string }> = ({ content, assetsUrl }) => {
     function prefixBaseUrl(url: URL) {
+        if (url.pathname == null || url.pathname == "/" || url.pathname == "") {
+            // URL is a hash link or doesn't have a path
+            return url;
+        }
         if (url.host === null) {
             url.host = assetsUrl;
         }
