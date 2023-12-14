@@ -6,6 +6,7 @@ import Readme from "@/components/readme";
 import Link from "next/link";
 import InfoCard from "./info-card";
 import { ProjectWithUser } from "@/additional";
+import GithubRepoStatsIcons from "./github-repo-stats-icons";
 
 export async function generateStaticParams() {
     const projects = await prisma.project.findMany();
@@ -33,20 +34,25 @@ export default async function Page({ params }: { params: { username: string; pro
     return (
         <div className="py-10">
             <div className="container">
-                <div className="border-b pb-5">
-                    <h1 className="text-2xl mb-2">{project.name}</h1>
-                    <p className="text-muted-foreground mb-4">{project.description}</p>
-                    {project.categories.map((category, index) => {
-                        return (
-                            <Link
-                                href={`/search?category=${category}`}
-                                key={index}
-                                className="border px-3 py-1 text-sm rounded hover:bg-primary hover:text-primary-foreground"
-                            >
-                                {category}
-                            </Link>
-                        );
-                    })}
+                <div className="border-b pb-5 flex gap-5 flex-col lg:flex-row justify-between">
+                    <div>
+                        <h1 className="text-2xl mb-2">{project.name}</h1>
+                        <p className="text-muted-foreground mb-4">{project.description}</p>
+                        {project.categories.map((category, index) => {
+                            return (
+                                <Link
+                                    href={`/search?category=${category}`}
+                                    key={index}
+                                    className="border px-3 py-1 text-sm rounded hover:bg-primary hover:text-primary-foreground"
+                                >
+                                    {category}
+                                </Link>
+                            );
+                        })}
+                    </div>
+                    <div>
+                        <GithubRepoStatsIcons project={project} />
+                    </div>
                 </div>
                 <div className="flex flex-row-reverse gap-4 lg:gap-10 mt-10">
                     <div className="w-1/3">
