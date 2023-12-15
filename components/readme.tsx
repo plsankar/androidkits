@@ -16,6 +16,10 @@ import rehypeExternalLinks from "rehype-external-links";
 
 const Readme: FC<{ content: string; assetsUrl: string }> = ({ content, assetsUrl }) => {
     function prefixBaseUrl(url: URL) {
+        if (url.pathname == null || url.pathname == "/" || url.pathname == "") {
+            // URL is a hash link or doesn't have a path
+            return url;
+        }
         if (url.host === null) {
             url.host = assetsUrl;
         }
@@ -46,6 +50,7 @@ const Readme: FC<{ content: string; assetsUrl: string }> = ({ content, assetsUrl
                                     img: "not-prose",
                                     "h1,h2,h3,h4,h5,h6": "border-b pb-2",
                                     p: "pt-0",
+                                    "p img": "inline",
                                 },
                             ],
                         ],

@@ -1,10 +1,12 @@
-import { Card, CardHeader } from "@/components/ui/card";
 import prisma from "@/lib/db";
 import { notFound } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Metadata } from "next";
 import Readme from "@/components/readme";
 import Link from "next/link";
+import InfoCard from "./info-card";
+import { ProjectWithUser } from "@/additional";
+import GithubRepoStatsIcons from "./github-repo-stats-icons";
 
 export async function generateStaticParams() {
     const projects = await prisma.project.findMany();
@@ -15,9 +17,13 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: { params: { username: string; project: string } }) {
-    const project = await prisma.project.findFirst({
+    // @ts-ignore
+    const project: ProjectWithUser = await prisma.project.findFirst({
         where: {
             slug: `${params.username}/${params.project}`,
+        },
+        include: {
+            user: true,
         },
     });
 
@@ -28,40 +34,31 @@ export default async function Page({ params }: { params: { username: string; pro
     return (
         <div className="py-10">
             <div className="container">
-                <div className="border-b pb-5">
-                    <h1 className="text-2xl mb-2">{project.name}</h1>
-                    <p className="text-muted-foreground">{project.description}</p>
-                </div>
-                <div className="flex flex-row-reverse gap-4 lg:gap-10 mt-10">
-                    <div className="w-1/3">
-                        <Card className="rounded-sm sticky top-0">
-                            <CardHeader className="p-3">
-                                <div className="flex flex-col divide-y space-y-3">
-                                    <div>
-                                        <h2 className="mb-1">Repository</h2>
-                                        <p className="text-muted-foreground text-sm">
-                                            <Link href={project.repo} target="_blank" rel="nofollow">
-                                                {project.repo}
-                                            </Link>
-                                        </p>
-                                    </div>
-                                    <div>
-                                        <h2 className="mb-1 pt-3">Homepage</h2>
-                                        <p className="text-muted-foreground text-sm">
-                                            <Link
-                                                href={project.homepage !== "" ? project.homepage : project.repo}
-                                                target="_blank"
-                                                rel="nofollow"
-                                            >
-                                                {project.homepage !== "" ? project.homepage : project.repo}
-                                            </Link>
-                                        </p>
-                                    </div>
-                                </div>
-                            </CardHeader>
-                        </Card>
+                <div className="border-b pb-5 flex gap-5 flex-col lg:flex-row justify-between">
+                    <div>
+                        <h1 className="text-2xl mb-2">{project.name}</h1>
+                        <p className="text-muted-foreground mb-4">{project.description}</p>
+                        {project.categories.map((category, index) => {
+                            return (
+                                <Link
+                                    href={`/search?category=${category}`}
+                                    key={index}
+                                    className="border px-3 py-1 text-sm rounded hover:bg-primary hover:text-primary-foreground"
+                                >
+                                    {category}
+                                </Link>
+                            );
+                        })}
                     </div>
-                    <div className="w-2/3">
+                    <div>
+                        <GithubRepoStatsIcons project={project} />
+                    </div>
+                </div>
+                <div className="flex flex-col-reverse xl:flex-row-reverse gap-4 xl:gap-10 mt-10">
+                    <div className="xl:w-1/3">
+                        <InfoCard project={project} />
+                    </div>
+                    <div className="xl:w-2/3">
                         <Tabs defaultValue="readme" className="w-full">
                             <TabsList className="bg-none">
                                 <TabsTrigger value="readme">Readme</TabsTrigger>
