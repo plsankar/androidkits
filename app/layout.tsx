@@ -18,7 +18,7 @@ const titillium_web = Titillium_Web({
 
 export const metadata: Metadata = {
     title: {
-        default: "AndroidKits",
+        default: "AndroidKits | Elevate Your Android Development with Our Arsenal",
         template: "%s | AndroidKits",
     },
     description: "Elevate Your Android Development with Our Arsenal",
