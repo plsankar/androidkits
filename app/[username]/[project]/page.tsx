@@ -2,7 +2,7 @@ import prisma from "@/lib/db";
 import { notFound } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Metadata } from "next";
-import Readme from "@/components/readme";
+import MarkdownRenderer from "@/components/markdown-renderer";
 import Link from "next/link";
 import InfoCard from "./info-card";
 import { ProjectWithUser } from "@/additional";
@@ -66,7 +66,7 @@ export default async function Page({ params }: { params: { username: string; pro
                             </TabsList>
                             <div className="mt-10">
                                 <TabsContent value="readme">
-                                    <Readme
+                                    <MarkdownRenderer
                                         content={project.readme}
                                         assetsUrl={`https://raw.githubusercontent.com/${project.slug}/master/`}
                                     />

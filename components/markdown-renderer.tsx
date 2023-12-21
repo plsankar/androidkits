@@ -14,7 +14,7 @@ import remarkGfm from "remark-gfm";
 import remarkUrls from "rehype-urls";
 import rehypeExternalLinks from "rehype-external-links";
 
-const Readme: FC<{ content: string; assetsUrl: string }> = ({ content, assetsUrl }) => {
+const MarkdownRenderer: FC<{ content: string; assetsUrl: string }> = ({ content, assetsUrl }) => {
     function prefixBaseUrl(url: URL) {
         if (url.pathname == null || url.pathname == "/" || url.pathname == "") {
             // URL is a hash link or doesn't have a path
@@ -62,4 +62,4 @@ const Readme: FC<{ content: string; assetsUrl: string }> = ({ content, assetsUrl
     );
 };
 
-export default Readme;
+export default MarkdownRenderer;
