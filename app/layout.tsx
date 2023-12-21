@@ -31,6 +31,7 @@ export const metadata: Metadata = {
         title: "AndroidKits | Elevate Your Android Development with Our Arsenal",
         description: "Android development libraries and tools",
     },
+    metadataBase: new URL(process.env.VERCEL_URL || `http://localhost:${process.env.PORT || 3000}`),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
