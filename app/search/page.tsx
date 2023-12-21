@@ -9,9 +9,15 @@ const searchSchema = z.object({
     page: z.number().default(1),
 });
 
-export const metadata: Metadata = {
-    title: "Search",
-};
+export async function generateMetadata({ searchParams }: { searchParams: { page: string } }): Promise<Metadata | null> {
+    const parse = searchSchema.safeParse({ ...searchParams, page: parseInt((searchParams.page as string) ?? "1") });
+    if (!parse.success) {
+        return null;
+    }
+    return {
+        title: `Search${parse.data.page > 1 ? " - Page " + parse.data.page : ""}`,
+    };
+}
 
 const PROJECTS_PER_PAGE = 6;
 
