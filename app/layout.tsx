@@ -18,10 +18,19 @@ const titillium_web = Titillium_Web({
 
 export const metadata: Metadata = {
     title: {
-        default: "AndroidKits",
+        default: "AndroidKits | Elevate Your Android Development with Our Arsenal",
         template: "%s | AndroidKits",
     },
-    description: "Elevate Your Android Development with Our Arsenal",
+    description: "Android development libraries and tools",
+    applicationName: "AndroidKits",
+    authors: [{ name: "@plsankar", url: "https://github.com/plsankar/" }],
+    creator: "AndroidKits",
+    publisher: "AndroidKits",
+    openGraph: {
+        type: "website",
+        title: "AndroidKits | Elevate Your Android Development with Our Arsenal",
+        description: "Android development libraries and tools",
+    },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
