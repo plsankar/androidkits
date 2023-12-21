@@ -1,8 +1,9 @@
 import { Metadata } from "next";
 import MarkdownRenderer from "@/components/markdown-renderer";
-import { existsSync, readFileSync, readdirSync } from "fs";
+import { existsSync, readFileSync, readdirSync, statSync } from "fs";
 import path, { basename, extname } from "path";
 import matter from "gray-matter";
+import { format } from "date-fns";
 
 const pagesFolder = path.join(process.cwd(), "pages");
 
@@ -50,11 +51,21 @@ export async function generateMetadata({ params: { slug } }: { params: { slug: s
 
     const page = matter(readFileSync(pageFile, "utf8"));
 
+    const { mtime, birthtime } = statSync(pageFile);
+
     if (!page) {
         return null;
     }
 
     return {
         title: `${page.data.title}`,
+        openGraph: {
+            siteName: "AndroidKits",
+            locale: "en_US",
+            title: `${page.data.title}`,
+            type: "article",
+            publishedTime: format(birthtime, "yyyy-MM-dd'T'HH:mm:ss'Z'"),
+            modifiedTime: format(mtime, "yyyy-MM-dd'T'HH:mm:ss'Z'"),
+        },
     };
 }
