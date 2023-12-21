@@ -19,7 +19,7 @@ export async function generateMetadata({ searchParams }: { searchParams: { page:
     };
 }
 
-const PROJECTS_PER_PAGE = 6;
+export const PROJECTS_PER_PAGE = 6;
 
 export default async function Search({
     searchParams,
@@ -33,18 +33,22 @@ export default async function Search({
     if (parse.success) {
         filter = parse.data;
     }
-    const projects = await prisma.project.findMany({
-        skip: (filter.page - 1) * PROJECTS_PER_PAGE,
-        take: PROJECTS_PER_PAGE,
-        include: {
-            user: true,
-        },
-    });
+
+    const [projects, count] = await prisma.$transaction([
+        prisma.project.findMany({
+            skip: (filter.page - 1) * PROJECTS_PER_PAGE,
+            take: PROJECTS_PER_PAGE,
+            include: {
+                user: true,
+            },
+        }),
+        prisma.project.count(),
+    ]);
 
     return (
         <div className="container pt-10">
             <ArchiveGrid projects={projects} />
-            <ArchiveNavigation page={filter.page} />
+            <ArchiveNavigation page={filter.page} total={count} perPage={PROJECTS_PER_PAGE} />
         </div>
     );
 }
