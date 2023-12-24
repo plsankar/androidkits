@@ -23,12 +23,12 @@ const ArchiveNavigation: FC<{ page: number; total: number; perPage: number }> = 
         <div className="flex justify-end gap-5 mt-10">
             <Pagination className="w-fit inline-flex mx-0">
                 <PaginationContent>
-                    {hasPrev ? <PaginationPrevious href={buildLink({ page: `${page - 1}` })} /> : null}
+                    {hasPrev ? <PaginationPrevious href={buildLink({ page: page - 1 })} /> : null}
                     {paginationItems.map((item, index) => {
                         return (
                             <Fragment key={index}>
                                 {typeof item !== "string" ? (
-                                    <PaginationLink isActive={item === page} href={buildLink({ page: `${page}` })}>
+                                    <PaginationLink isActive={item === page} href={buildLink({ page: item })}>
                                         {item}
                                     </PaginationLink>
                                 ) : (
@@ -37,7 +37,7 @@ const ArchiveNavigation: FC<{ page: number; total: number; perPage: number }> = 
                             </Fragment>
                         );
                     })}
-                    {hasNext ? <PaginationNext href={buildLink({ page: `${page + 1}` })} /> : null}
+                    {hasNext ? <PaginationNext href={buildLink({ page: page + 1 })} /> : null}
                 </PaginationContent>
             </Pagination>
         </div>

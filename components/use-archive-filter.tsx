@@ -7,7 +7,7 @@ import omit from "lodash.omit";
 export const useArchiveFilter = () => {
     const url = process.env.VERCEL_URL || "http://localhost:3000/";
     const searchParams = useSearchParams();
-    const { query, page, sort } = useMemo(() => {
+    const { query, page, sort, order } = useMemo(() => {
         return {
             query: searchParams?.get("query") || "",
             page:
@@ -15,11 +15,12 @@ export const useArchiveFilter = () => {
                     ? parseInt(searchParams.get("page") || "1")
                     : 1,
             sort: searchParams?.get("sort") || "default",
+            order: searchParams?.get("order") || "asc",
         };
     }, [searchParams]);
 
-    function buildLink(filters: { query?: string; page?: number; sort?: string }) {
-        const _filters = omit({ query, page, sort, ...filters });
+    function buildLink(filters: { query?: string; page?: number; sort?: string; order?: string }) {
+        const _filters = omit({ query, page, sort, order, ...filters });
         const _url = new URL(url || "");
         _url.pathname = "search";
         if (_filters.query !== "") {
@@ -31,8 +32,11 @@ export const useArchiveFilter = () => {
         if (_filters.sort !== "default" && _filters.sort !== "") {
             _url.searchParams.set("sort", _filters.sort);
         }
+        if (_filters.order !== "asc" && _filters.order !== "") {
+            _url.searchParams.set("order", _filters.order);
+        }
         return _url.toString();
     }
 
-    return { buildLink, query, page, sort };
+    return { buildLink, query, order, page, sort };
 };
