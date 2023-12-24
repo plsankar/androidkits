@@ -10,15 +10,21 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination";
+import { useSearchParams } from "next/navigation";
 
 const ArchiveNavigation: FC<{ page: number; total: number; perPage: number }> = ({ page, total, perPage }) => {
     const hasNext = total >= page * perPage;
     const hasPrev = page !== 1;
     const totalPages = Math.ceil(total / perPage);
     const paginationItems = calculatePages(page, totalPages, 3);
+    const searchParams = useSearchParams();
 
     function buildLinkForPage(page: number) {
-        return `/search?page=${page}`;
+        const _query = searchParams?.get("query");
+        const _params = new URLSearchParams();
+        _query && _params.append("query", _query);
+        page !== 1 && _params.append("page", `${page}`);
+        return `/search?${_params.toString()}`;
     }
 
     return (
