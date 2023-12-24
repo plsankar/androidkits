@@ -10,33 +10,25 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination";
-import { useSearchParams } from "next/navigation";
+import { useArchiveFilter } from "./use-archive-filter";
 
 const ArchiveNavigation: FC<{ page: number; total: number; perPage: number }> = ({ page, total, perPage }) => {
     const hasNext = total >= page * perPage;
     const hasPrev = page !== 1;
     const totalPages = Math.ceil(total / perPage);
     const paginationItems = calculatePages(page, totalPages, 3);
-    const searchParams = useSearchParams();
-
-    function buildLinkForPage(page: number) {
-        const _query = searchParams?.get("query");
-        const _params = new URLSearchParams();
-        _query && _params.append("query", _query);
-        page !== 1 && _params.append("page", `${page}`);
-        return `/search?${_params.toString()}`;
-    }
+    const { buildLink } = useArchiveFilter();
 
     return (
         <div className="flex justify-end gap-5 mt-10">
             <Pagination className="w-fit inline-flex mx-0">
                 <PaginationContent>
-                    {hasPrev ? <PaginationPrevious href={buildLinkForPage(page - 1)} /> : null}
+                    {hasPrev ? <PaginationPrevious href={buildLink({ page: `${page - 1}` })} /> : null}
                     {paginationItems.map((item, index) => {
                         return (
                             <Fragment key={index}>
                                 {typeof item !== "string" ? (
-                                    <PaginationLink isActive={item === page} href={buildLinkForPage(item)}>
+                                    <PaginationLink isActive={item === page} href={buildLink({ page: `${page}` })}>
                                         {item}
                                     </PaginationLink>
                                 ) : (
@@ -45,7 +37,7 @@ const ArchiveNavigation: FC<{ page: number; total: number; perPage: number }> = 
                             </Fragment>
                         );
                     })}
-                    {hasNext ? <PaginationNext href={buildLinkForPage(page + 1)} /> : null}
+                    {hasNext ? <PaginationNext href={buildLink({ page: `${page + 1}` })} /> : null}
                 </PaginationContent>
             </Pagination>
         </div>
