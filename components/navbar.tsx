@@ -2,6 +2,7 @@ import React from "react";
 import Logo from "./logo";
 import { ModeToggle } from "./ui/mode-toggle";
 import Link from "next/link";
+import SearchForm from "./search-form";
 
 const Navbar = () => {
     return (
@@ -11,6 +12,9 @@ const Navbar = () => {
                     <Logo className="h-8 w-auto" />
                     <span className="sr-only">AndroidKits</span>
                 </Link>
+                <div className="ml-auto">
+                    <SearchForm />
+                </div>
                 <div>
                     <ModeToggle />
                 </div>
