@@ -6,5 +6,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function getHostUrl() {
-    return process.env.NODE_ENV === "development" ? "http://localhost:3000/" : "https://androidkits.com/";
+    return process.env.VERCEL_URL && process.env.VERCEL_URL !== ""
+        ? process.env.VERCEL_URL
+        : "https://androidkits.com/";
 }
