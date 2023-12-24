@@ -28,7 +28,6 @@ const Footer = () => {
                                 <h4 className="border-b text-base pb-2 mb-2 text-muted-foreground">Legal</h4>
                                 <Link href="/page/privacy-policy">Privacy Policy</Link>
                                 <Link href="/page/terms-and-conditions">Terms and Conditions</Link>
-                                <Link href="#">Cookie Policy</Link>
                             </div>
                         </div>
                         <div>
