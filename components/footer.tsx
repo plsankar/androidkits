@@ -20,23 +20,22 @@ const Footer = () => {
                             <div className="flex flex-col gap-1 text-sm">
                                 <h4 className="border-b text-base pb-2 mb-2 text-muted-foreground">Pages</h4>
                                 <Link href="/">Home</Link>
-                                <Link href="#">Contact</Link>
+                                <a href="mailto:me@lakshmisankar.com?subject=Regarding%20AndroidKits">Contact</a>
                             </div>
                         </div>
                         <div>
                             <div className="flex flex-col gap-1 text-sm">
                                 <h4 className="border-b text-base pb-2 mb-2 text-muted-foreground">Legal</h4>
                                 <Link href="/page/privacy-policy">Privacy Policy</Link>
-                                <Link href="#">Terms and Conditions</Link>
-                                <Link href="#">Cookie Policy</Link>
+                                <Link href="/page/terms-and-conditions">Terms and Conditions</Link>
                             </div>
                         </div>
                         <div>
                             <div className="flex flex-col gap-1 text-sm">
                                 <h4 className="border-b text-base pb-2 mb-2 text-muted-foreground">Open Source</h4>
-                                <Link target="_blank" rel="nofollow" href="https://github.com/plsankar/androidkits">
+                                <a target="_blank" rel="nofollow" href="https://github.com/plsankar/androidkits">
                                     Github
-                                </Link>
+                                </a>
                             </div>
                         </div>
                     </div>

@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Inter, Titillium_Web } from "next/font/google";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { getHostUrl } from "@/lib/utils";
 
 const inter = Inter({
     weight: ["100", "200", "300", "400", "500", "600"],
@@ -31,6 +32,7 @@ export const metadata: Metadata = {
         title: "AndroidKits | Elevate Your Android Development with Our Arsenal",
         description: "Android development libraries and tools",
     },
+    metadataBase: new URL(getHostUrl()),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -60,9 +60,6 @@
         -webkit-font-smoothing: antialiased;
         text-rendering: optimizeLegibility;
     }
-    a {
-        @apply hover:text-primary transition duration-100;
-    }
     .font-display {
         font-family: var(--font-titillium-web);
     }

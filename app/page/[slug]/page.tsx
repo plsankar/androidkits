@@ -33,8 +33,8 @@ export default async function Page({ params: { slug } }: { params: { slug: strin
     return (
         <div className="py-10">
             <div className="container">
-                <div className="border-b mb-5 flex gap-5 flex-col lg:flex-row justify-between">
-                    <h1 className="text-4xl mb-2">{page.data.title}</h1>
+                <div className="border-b mb-5 flex gap-4 flex-col justify-between pb-5">
+                    <h1 className="text-4xl">{page.data.title}</h1>
                 </div>
                 <MarkdownRenderer content={page.content} assetsUrl="" />
             </div>

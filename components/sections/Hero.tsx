@@ -1,6 +1,4 @@
 import React from "react";
-import { buttonVariants } from "@/components/ui/button";
-import Link from "next/link";
 
 const Hero = () => {
     return (
@@ -9,19 +7,6 @@ const Hero = () => {
                 <span className="text-primary">Android development</span> <br />
                 libraries and tools
             </h1>
-            <div className="flex flex-row gap-5">
-                <Link href="/search" className={buttonVariants({})}>
-                    Explore
-                </Link>
-                <Link
-                    href="https://github.com/plsankar/androidkits"
-                    target="_blank"
-                    rel="nofollow"
-                    className={buttonVariants({ variant: "outline" })}
-                >
-                    Github
-                </Link>
-            </div>
         </div>
     );
 };

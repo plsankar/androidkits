@@ -1,20 +1,50 @@
-"use client";
+import React, { FC, Fragment } from "react";
+import { calculatePages } from "@/lib/pagination";
+import {
+    Pagination,
+    PaginationContent,
+    PaginationEllipsis,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+} from "@/components/ui/pagination";
+import { ArchiveFitler } from "./archive";
+import { buildArchiveLink } from "@/lib/utils";
 
-import React, { FC } from "react";
-import { Button } from "./ui/button";
-import Link from "next/link";
+const ArchiveNavigation: FC<{ page: number; total: number; perPage: number; archiveFilter: ArchiveFitler }> = ({
+    page,
+    total,
+    perPage,
+    archiveFilter,
+}) => {
+    const hasNext = total >= page * perPage;
+    const hasPrev = page !== 1;
+    const totalPages = Math.ceil(total / perPage);
+    const paginationItems = calculatePages(page, totalPages, 3);
 
-const ArchiveNavigation: FC<{ page: number }> = ({ page }) => {
+    const buildLink = (filters: Partial<ArchiveFitler>) => buildArchiveLink({ ...archiveFilter, ...filters });
+
     return (
         <div className="flex justify-end gap-5 mt-10">
-            {page !== 1 ? (
-                <Button asChild variant="secondary">
-                    <Link href={`/search?page=${page - 1}`}>Prev</Link>
-                </Button>
-            ) : null}
-            <Button asChild variant="secondary">
-                <Link href={`/search?page=${page + 1}`}>Next</Link>
-            </Button>
+            <Pagination className="w-fit inline-flex mx-0">
+                <PaginationContent>
+                    {hasPrev ? <PaginationPrevious href={buildLink({ page: page - 1 })} /> : null}
+                    {paginationItems.map((item, index) => {
+                        return (
+                            <Fragment key={index}>
+                                {typeof item !== "string" ? (
+                                    <PaginationLink isActive={item === page} href={buildLink({ page: item })}>
+                                        {item}
+                                    </PaginationLink>
+                                ) : (
+                                    <PaginationEllipsis />
+                                )}
+                            </Fragment>
+                        );
+                    })}
+                    {hasNext ? <PaginationNext href={buildLink({ page: page + 1 })} /> : null}
+                </PaginationContent>
+            </Pagination>
         </div>
     );
 };
