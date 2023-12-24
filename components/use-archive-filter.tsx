@@ -10,18 +10,27 @@ export const useArchiveFilter = () => {
     const { query, page, sort } = useMemo(() => {
         return {
             query: searchParams?.get("query") || "",
-            page: searchParams?.get("page") || "1",
+            page:
+                searchParams !== null && searchParams.get("page") !== null
+                    ? parseInt(searchParams.get("page") || "1")
+                    : 1,
             sort: searchParams?.get("sort") || "default",
         };
     }, [searchParams]);
 
-    function buildLink(filters: { query?: string; page?: string; sort?: string }) {
+    function buildLink(filters: { query?: string; page?: number; sort?: string }) {
         const _filters = omit({ query, page, sort, ...filters });
         const _url = new URL(url || "");
         _url.pathname = "search";
-        _url.searchParams.set("query", _filters.query);
-        _url.searchParams.set("page", _filters.page);
-        _url.searchParams.set("sort", _filters.sort);
+        if (_filters.query !== "") {
+            _url.searchParams.set("query", _filters.query);
+        }
+        if (_filters.page > 1) {
+            _url.searchParams.set("page", `${_filters.page}`);
+        }
+        if (_filters.sort !== "default" && _filters.sort !== "") {
+            _url.searchParams.set("sort", _filters.sort);
+        }
         return _url.toString();
     }
 
