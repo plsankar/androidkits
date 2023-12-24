@@ -1,5 +1,3 @@
-"use client";
-
 import React, { FC, Fragment } from "react";
 import { calculatePages } from "@/lib/pagination";
 import {
@@ -10,14 +8,21 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination";
-import { useArchiveFilter } from "./use-archive-filter";
+import { ArchiveFitler } from "./archive";
+import { buildArchiveLink } from "@/lib/utils";
 
-const ArchiveNavigation: FC<{ page: number; total: number; perPage: number }> = ({ page, total, perPage }) => {
+const ArchiveNavigation: FC<{ page: number; total: number; perPage: number; archiveFilter: ArchiveFitler }> = ({
+    page,
+    total,
+    perPage,
+    archiveFilter,
+}) => {
     const hasNext = total >= page * perPage;
     const hasPrev = page !== 1;
     const totalPages = Math.ceil(total / perPage);
     const paginationItems = calculatePages(page, totalPages, 3);
-    const { buildLink } = useArchiveFilter();
+
+    const buildLink = (filters: Partial<ArchiveFitler>) => buildArchiveLink({ ...archiveFilter, ...filters });
 
     return (
         <div className="flex justify-end gap-5 mt-10">

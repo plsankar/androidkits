@@ -1,14 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { FC } from "react";
 import SearchForm from "./search-form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { useArchiveFilter } from "./use-archive-filter";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { ArrowDownAZIcon, ArrowDownZAIcon } from "lucide-react";
+import { ArchiveFitler } from "./archive";
+import { buildArchiveLink } from "@/lib/utils";
 
-const ArchiveHeaders = () => {
-    const { sort, order, buildLink } = useArchiveFilter();
+const ArchiveHeaders: FC<{ archiveFilter: ArchiveFitler }> = ({ archiveFilter }) => {
+    const { sort, order } = archiveFilter;
+
+    const buildLink = (filters: Partial<ArchiveFitler>) => buildArchiveLink({ ...archiveFilter, ...filters });
 
     return (
         <div className="flex flex-wrap justify-between">
@@ -17,7 +20,7 @@ const ArchiveHeaders = () => {
                     <span className="text-sm">Sort: </span>
                     <Select
                         value={sort}
-                        onValueChange={(value) => {
+                        onValueChange={(value: any) => {
                             window.location.href = buildLink({ sort: value, page: 1 });
                         }}
                     >
@@ -34,12 +37,11 @@ const ArchiveHeaders = () => {
                     <ToggleGroup
                         type="single"
                         value={order}
-                        onValueChange={(value) => {
+                        onValueChange={(value: any) => {
                             window.location.href = buildLink({ order: value, page: 1 });
                         }}
                     >
                         <ToggleGroupItem value="asc" title="Ascending Order">
-                            {/* <ArrowDownNarrowWideIcon className="w-4 h-4" /> */}
                             <ArrowDownAZIcon className="w-4 h-4" />
                         </ToggleGroupItem>
                         <ToggleGroupItem value="desc" title="Descending Order">
