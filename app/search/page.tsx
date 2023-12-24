@@ -34,7 +34,7 @@ export async function generateMetadata({ searchParams }: { searchParams: { page:
     };
 }
 
-export const PROJECTS_PER_PAGE = 24;
+const PROJECTS_PER_PAGE = 24;
 
 export default async function Search({
     searchParams,
