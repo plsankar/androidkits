@@ -42,11 +42,11 @@ export default async function Page({ params }: { params: { username: string } })
     return (
         <div className="py-10">
             <div className="container">
-                <div className="flex gap-10">
-                    <div className="w-1/4">
+                <div className="flex flex-row flex-wrap gap-10">
+                    <div className="w-full sm:w-1/2 lg:w-1/4">
                         <UserCard user={user} />
                     </div>
-                    <div className="w-3/4">
+                    <div className="w-full lg:w-3/4">
                         <h2 className="mb-5 pb-5 border-b">Projects</h2>
                         {projects.length === 0 ? (
                             <div className="text-center">No Results Found.</div>
