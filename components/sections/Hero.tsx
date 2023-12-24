@@ -1,5 +1,5 @@
 import React from "react";
-import { buttonVariants } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 const Hero = () => {
@@ -10,17 +10,14 @@ const Hero = () => {
                 libraries and tools
             </h1>
             <div className="flex flex-row gap-5">
-                <Link href="/search" className={buttonVariants({})}>
-                    Explore
-                </Link>
-                <Link
-                    href="https://github.com/plsankar/androidkits"
-                    target="_blank"
-                    rel="nofollow"
-                    className={buttonVariants({ variant: "outline" })}
-                >
-                    Github
-                </Link>
+                <Button asChild>
+                    <Link href="/search">Explore</Link>
+                </Button>
+                <Button variant="secondary" asChild>
+                    <Link href="https://github.com/plsankar/androidkits" target="_blank" rel="nofollow">
+                        Github
+                    </Link>
+                </Button>
             </div>
         </div>
     );
