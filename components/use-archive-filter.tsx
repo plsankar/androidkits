@@ -5,7 +5,6 @@ import { useMemo } from "react";
 import omit from "lodash.omit";
 
 export const useArchiveFilter = () => {
-    console.log(process.env.VERCEL_URL);
     const url = process.env.NODE_ENV === "development" ? "http://localhost:3000/" : "https://androidkits.com/";
     const searchParams = useSearchParams();
     const { query, page, sort, order } = useMemo(() => {
