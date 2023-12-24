@@ -11,8 +11,8 @@ export function getHostUrl() {
     if (typeof window !== "undefined") {
         return `${window.location.protocol}//${window.location.host}`;
     }
-    return process.env.VERCEL_URL && process.env.VERCEL_URL !== ""
-        ? process.env.VERCEL_URL
+    return process.env.DEPLOYMENT_URL && process.env.DEPLOYMENT_URL !== ""
+        ? process.env.DEPLOYMENT_URL
         : "https://androidkits.com/";
 }
 
