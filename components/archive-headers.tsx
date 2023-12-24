@@ -5,14 +5,7 @@ import SearchForm from "./search-form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useArchiveFilter } from "./use-archive-filter";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import {
-    AArrowDownIcon,
-    AArrowUpIcon,
-    ArrowDownAZIcon,
-    ArrowDownNarrowWideIcon,
-    ArrowDownWideNarrowIcon,
-    ArrowDownZAIcon,
-} from "lucide-react";
+import { ArrowDownAZIcon, ArrowDownZAIcon } from "lucide-react";
 
 const ArchiveHeaders = () => {
     const { sort, order, buildLink } = useArchiveFilter();
