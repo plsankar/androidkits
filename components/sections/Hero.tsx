@@ -1,6 +1,4 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
 const Hero = () => {
     return (
@@ -9,16 +7,6 @@ const Hero = () => {
                 <span className="text-primary">Android development</span> <br />
                 libraries and tools
             </h1>
-            <div className="flex flex-row gap-5">
-                <Button asChild>
-                    <Link href="/search">Explore</Link>
-                </Button>
-                <Button variant="secondary" asChild>
-                    <Link href="https://github.com/plsankar/androidkits" target="_blank" rel="nofollow">
-                        Github
-                    </Link>
-                </Button>
-            </div>
         </div>
     );
 };
