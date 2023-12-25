@@ -42,8 +42,8 @@ export default async function Page({ params }: { params: { username: string } })
     return (
         <div className="py-10">
             <div className="container">
-                <div className="flex flex-row flex-wrap gap-10">
-                    <div className="w-full sm:w-1/2 lg:w-1/4">
+                <div className="flex flex-col lg:flex-row gap-10">
+                    <div className="w-full sm:w-1/2 lg:w-1/4 max-w-xs">
                         <UserCard user={user} />
                     </div>
                     <div className="w-full lg:w-3/4">

@@ -8,7 +8,7 @@ const UserCardSkeleton: FC = () => {
             <CardContent className="p-5 text-center">
                 <div className="mb-5 flex justify-center">
                     <div className="border-primary border-2 rounded-full p-1">
-                        <Skeleton className="w-40 h-40 rounded-full" />
+                        <Skeleton className="w-28 h-28 rounded-full" />
                     </div>
                 </div>
                 <div className="mb-5 text-center">

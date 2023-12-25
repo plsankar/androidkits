@@ -12,7 +12,7 @@ const UserCard: FC<{ user: User }> = ({ user }) => {
             <CardContent className="p-5 text-center">
                 <div className="mb-5 flex justify-center">
                     <div className="border-primary border-2 rounded-full p-1">
-                        <Avatar className="w-40 h-40">
+                        <Avatar className="w-28 h-28">
                             <AvatarImage src={user.avatar} alt={user.name} />
                             <AvatarFallback></AvatarFallback>
                         </Avatar>
